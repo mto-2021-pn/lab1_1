@@ -5,12 +5,12 @@ import java.util.List;
 
 public class Offer {
 
-    private List<OfferItem> availableItems = new ArrayList<OfferItem>();
+    private final List<OfferItem> availableItems;
 
-    private List<OfferItem> unavailableItems = new ArrayList<OfferItem>();
+    private final List<OfferItem> unavailableItems;
 
-    public Offer(List<OfferItem> availabeItems, List<OfferItem> unavailableItems) {
-        this.availableItems = availabeItems;
+    public Offer(List<OfferItem> available, List<OfferItem> unavailableItems) {
+        this.availableItems = available;
         this.unavailableItems = unavailableItems;
     }
 
@@ -43,13 +43,8 @@ public class Offer {
         }
         Offer other = (Offer) obj;
         if (availableItems == null) {
-            if (other.availableItems != null) {
-                return false;
-            }
-        } else if (!availableItems.equals(other.availableItems)) {
-            return false;
-        }
-        return true;
+            return other.availableItems == null;
+        } else return availableItems.equals(other.availableItems);
     }
 
     /**
@@ -57,7 +52,7 @@ public class Offer {
      * @param seenOffer
      * @param delta
      *            acceptable difference in percent
-     * @return
+     * @return boolean
      */
     public boolean sameAs(Offer seenOffer, double delta) {
         if (availableItems.size() != seenOffer.availableItems.size()) {
@@ -65,7 +60,7 @@ public class Offer {
         }
 
         for (OfferItem item : availableItems) {
-            OfferItem sameItem = seenOffer.findItem(item.getProductId());
+            OfferItem sameItem = seenOffer.findItem(item.getProduct().getProductId());
             if (sameItem == null) {
                 return false;
             }
@@ -79,7 +74,7 @@ public class Offer {
 
     private OfferItem findItem(String productId) {
         for (OfferItem item : availableItems) {
-            if (item.getProductId().equals(productId)) {
+            if (item.getProduct().getProductId().equals(productId)) {
                 return item;
             }
         }
