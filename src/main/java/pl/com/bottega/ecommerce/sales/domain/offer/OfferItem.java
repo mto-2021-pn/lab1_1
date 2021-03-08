@@ -65,17 +65,12 @@ public class OfferItem {
         return product;
     }
 
-
-
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + (discount == null ? 0 : discount.hashCode());
-        result = prime * result + (getProduct().getProductName() == null ? 0 : getProduct().getProductName().hashCode());
-        result = prime * result + (product.getPrice() == null ? 0 : product.getPrice().hashCode());
-        result = prime * result + (getProduct().getProductId() == null ? 0 : getProduct().getProductId().hashCode());
-        result = prime * result + (getProduct().getProductType() == null ? 0 : getProduct().getProductType().hashCode());
+        result = prime * result + (getProduct() == null ? 0 : product.hashCode());
         result = prime * result + quantity;
         result = prime * result + (totalCost == null ? 0 : totalCost.hashCode());
         return result;
@@ -100,31 +95,10 @@ public class OfferItem {
         } else if (!discount.equals(other.discount)) {
             return false;
         }
-        if (product.getProductName() == null) {
-            if (other.product.getProductName() != null) {
-                return false;
-            }
-        } else if (!product.getProductName().equals(other.product.getProductName())) {
-            return false;
-        }
-        if (product.getPrice() == null) {
-            if (other.product.getPrice() != null) {
-                return false;
-            }
-        } else if (!product.getPrice().equals(other.product.getPrice())) {
-            return false;
-        }
-        if (product.getProductId() == null) {
-            if (other.product.getProductId() != null) {
-                return false;
-            }
-        } else if (!product.getProductId().equals(other.product.getProductId())) {
-            return false;
-        }
-        if (!product.getProductType().equals(other.product.getProductType())) {
-            return false;
-        }
         if (quantity != other.quantity) {
+            return false;
+        }
+        if (!product.equals(getProduct())) {
             return false;
         }
         if (totalCost == null) {
@@ -134,34 +108,17 @@ public class OfferItem {
 
     /**
      *
-     * @param item
+     * @param other
      * @param delta
      *            acceptable percentage difference
-     * @return
+     * @return boolean
      */
     public boolean sameAs(OfferItem other, double delta) {
         if (product.getProductName() == null) {
             if (other.product.getProductName() != null) {
                 return false;
             }
-        } else if (!product.getProductName().equals(other.product.getProductName())) {
-            return false;
-        }
-        if (product.getPrice() == null) {
-            if (other.product.getPrice() != null) {
-                return false;
-            }
-        } else if (!product.getPrice().equals(other.product.getPrice())) {
-            return false;
-        }
-        if (product.getProductId() == null) {
-            if (other.product.getProductId() != null) {
-                return false;
-            }
-        } else if (!product.getProductId().equals(other.product.getProductId())) {
-            return false;
-        }
-        if (!product.getProductType().equals(other.product.getProductType())) {
+        } else if (!product.equals(other.product)) {
             return false;
         }
 

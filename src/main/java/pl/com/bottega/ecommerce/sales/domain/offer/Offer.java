@@ -52,7 +52,7 @@ public class Offer {
      * @param seenOffer
      * @param delta
      *            acceptable difference in percent
-     * @return
+     * @return boolean
      */
     public boolean sameAs(Offer seenOffer, double delta) {
         if (availableItems.size() != seenOffer.availableItems.size()) {
