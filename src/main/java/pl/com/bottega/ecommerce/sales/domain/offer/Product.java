@@ -7,14 +7,14 @@ public class Product {
     private String id;
     private String type;
     private String name;
-    private BigDecimal price;
+    private Money cost;
     private Date snapshotDate;
 
-    public Product(String id, String type, String name, BigDecimal price, Date snapshotDate) {
+    public Product(String id, String type, String name, Money cost, Date snapshotDate) {
         this.id = id;
         this.type = type;
         this.name = name;
-        this.price = price;
+        this.cost = cost;
         this.snapshotDate = snapshotDate;
     }
 
@@ -30,8 +30,8 @@ public class Product {
         return name;
     }
 
-    public BigDecimal getPrice() {
-        return price;
+    public Money getCost() {
+        return cost;
     }
 
     public Date getSnapshotDate() {
@@ -50,8 +50,8 @@ public class Product {
         this.name = name;
     }
 
-    public void setPrice(BigDecimal price) {
-        this.price = price;
+    public void setPrice(Money cost) {
+        this.cost = cost;
     }
 
     public void setSnapshotDate(Date snapshotDate) {
@@ -63,7 +63,7 @@ public class Product {
         final int prime = 31;
         int result = 1;
         result = prime * result + (name == null ? 0 :name.hashCode());
-        result = prime * result + (price == null ? 0 : price.hashCode());
+        result = prime * result + (cost == null ? 0 : cost.hashCode());
         result = prime * result + (id == null ? 0 : id.hashCode());
         result = prime * result + (type == null ? 0 : type.hashCode());
         return result;
@@ -90,11 +90,11 @@ public class Product {
             return false;
         }
 
-        if (price == null) {
-            if (other.price != null) {
+        if (cost == null) {
+            if (other.cost != null) {
                 return false;
             }
-        } else if (!price.equals(other.price)) {
+        } else if (!cost.equals(other.cost)) {
             return false;
         }
 
