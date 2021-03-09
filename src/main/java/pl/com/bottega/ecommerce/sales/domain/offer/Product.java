@@ -1,6 +1,5 @@
 package pl.com.bottega.ecommerce.sales.domain.offer;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 public class Product {
@@ -90,11 +89,11 @@ public class Product {
             return false;
         }
 
-        if (cost == null) {
-            if (other.cost != null) {
+        if (cost.getAmount() == null) {
+            if (other.cost.getAmount() != null) {
                 return false;
             }
-        } else if (!cost.equals(other.cost)) {
+        } else if (!cost.getAmount().equals(other.cost.getAmount())) {
             return false;
         }
 

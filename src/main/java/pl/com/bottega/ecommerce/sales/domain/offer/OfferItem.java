@@ -88,10 +88,10 @@ public class OfferItem {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result += discount.hashCode();
-        result += product.hashCode();
+        result = prime * result + discount.hashCode();
+        result = prime * result + product.hashCode();
         result = prime * result + quantity;
-        result = prime * result + (totalCost == null ? 0 : totalCost.hashCode());
+        result = prime * result + totalCost.hashCode();
         return result;
     }
 
@@ -119,11 +119,8 @@ public class OfferItem {
         if (quantity != other.quantity) {
             return false;
         }
-        if (totalCost == null) {
-            if (other.totalCost != null) {
-                return false;
-            }
-        } else if (!totalCost.equals(other.totalCost)) {
+
+        if (!totalCost.equals(other.totalCost)) {
             return false;
         }
         return true;
@@ -144,11 +141,11 @@ public class OfferItem {
         } else if (!product.getName().equals(other.product.getName())) {
             return false;
         }
-        if (product.getCost() == null) {
+        if (product.getCost().getAmount() == null) {
             if (other.product != null) {
                 return false;
             }
-        } else if (!product.equals(other.product)) {
+        } else if (!product.getCost().equals(other.product.getCost())) {
             return false;
         }
         if (product.getId() == null) {
